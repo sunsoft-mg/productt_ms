@@ -9,7 +9,7 @@ import sunsoft.mg.common.interfaces.HasId;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class CommonLiteService<T extends HasId,L,R extends JpaRepository<T,String>,LR extends JpaRepository<L,String>> extends CommonService<T,R> {
+public abstract class CommonLiteService<T extends HasId,L,R extends JpaRepository<T,Integer>,LR extends JpaRepository<L,Integer>> extends CommonService<T,R> {
 
     protected final LR liteRepository;
 
@@ -22,7 +22,7 @@ public abstract class CommonLiteService<T extends HasId,L,R extends JpaRepositor
         return this.liteRepository.findAll();
     }
     private L findById(Integer id) throws DataNotSuitable {
-        Optional<L> optional = this.liteRepository.findById(String.valueOf(id));
+        Optional<L> optional = this.liteRepository.findById(id);
         if(optional.isEmpty()){
             throw new DataNotSuitable("Aucune donnée trouvée");
         }

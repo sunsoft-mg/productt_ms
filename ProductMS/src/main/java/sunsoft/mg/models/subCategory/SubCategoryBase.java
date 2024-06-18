@@ -1,34 +1,44 @@
-package sunsoft.mg.models;
+package sunsoft.mg.models.subCategory;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sunsoft.mg.common.exception.DataNotSuitable;
 import sunsoft.mg.common.interfaces.HasId;
 
 import static sunsoft.mg.common.CommonService.generateUUID;
 
-@Entity
+@MappedSuperclass
 @AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
-public class Currency implements HasId {//devise
+public class SubCategoryBase implements HasId {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
+
+    @Column
+    String code;
     @Column(updatable = false, nullable = false)
     public String uuid = generateUUID();
-    @Column(nullable = false, unique = true)
-    private String currency;
     @Column
-    private String sigle;
+    String name;
+
     @Column
-    private Double percent = (double) 0;
+    boolean canBeSold;
+
+    @Column
+    boolean SeeInSold;
+
+    @Column
+    Double margin;
 
     @Override
     public Integer getId() {
         return id;
     }
+    
 }

@@ -5,6 +5,6 @@ import sunsoft.mg.models.Tva;
 
 import java.util.List;
 
-public interface TvaRepo extends JpaRepository<Tva,String> {
+public interface TvaRepo extends JpaRepository<Tva,Integer> {
     List<Tva> findByDescriptionContaining(String description);
 }

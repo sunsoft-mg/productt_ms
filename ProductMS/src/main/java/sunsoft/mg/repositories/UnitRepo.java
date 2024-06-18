@@ -5,6 +5,6 @@ import sunsoft.mg.models.Unit;
 
 import java.util.List;
 
-public interface UnitRepo extends JpaRepository<Unit,String> {
+public interface UnitRepo extends JpaRepository<Unit,Integer> {
     List<Unit> findByUnitContaining(String unit);
 }

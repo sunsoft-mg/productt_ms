@@ -1,10 +1,11 @@
 package sunsoft.mg.models;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sunsoft.mg.common.exception.DataNotSuitable;
 import sunsoft.mg.common.interfaces.HasId;
 
 import static sunsoft.mg.common.CommonService.generateUUID;
@@ -13,19 +14,22 @@ import static sunsoft.mg.common.CommonService.generateUUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-public class Currency implements HasId {//devise
+public class Place implements HasId {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
+
     @Column(updatable = false, nullable = false)
     public String uuid = generateUUID();
-    @Column(nullable = false, unique = true)
-    private String currency;
     @Column
-    private String sigle;
+    String code;
+
     @Column
-    private Double percent = (double) 0;
+    String name;
+
+    public Place() {
+
+    }
 
     @Override
     public Integer getId() {

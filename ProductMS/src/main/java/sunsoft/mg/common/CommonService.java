@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class CommonService<T, R extends JpaRepository<T, String>> {
+public abstract class CommonService<T, R extends JpaRepository<T, Integer>> {
     protected final R repository;
 
     protected CommonService(R repository) {
@@ -38,7 +38,7 @@ public abstract class CommonService<T, R extends JpaRepository<T, String>> {
     }
 
     @Transactional(rollbackOn = { Exception.class })
-    public void delete(String id) {
+    public void delete(Integer id) {
         this.repository.deleteById(id);
     }
 
@@ -50,7 +50,7 @@ public abstract class CommonService<T, R extends JpaRepository<T, String>> {
         return this.repository.findAll(PageRequest.of(page,numberOfElement));
     }
 
-    public T getById(String id) throws DataNotFound {
+    public T getById(Integer id) throws DataNotFound {
         Optional<T> optional = this.repository.findById(id);
         if (optional.isEmpty()) {
             throw new DataNotFound("L'entité demandé est introuvable");

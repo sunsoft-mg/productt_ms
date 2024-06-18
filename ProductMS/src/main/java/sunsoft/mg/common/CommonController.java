@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import sunsoft.mg.common.exception.DataNotFound;
 import sunsoft.mg.common.exception.DataNotSuitable;
 
-public class CommonController<T,R extends JpaRepository<T,String>,S extends CommonService<T,R>> {
+public class CommonController<T,R extends JpaRepository<T,Integer>,S extends CommonService<T,R>> {
     
     protected S service;
     public CommonController(S service){
@@ -35,7 +35,7 @@ public class CommonController<T,R extends JpaRepository<T,String>,S extends Comm
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUnique(@PathVariable(required = false) String id) throws DataNotFound {
+    public ResponseEntity<?> getUnique(@PathVariable(required = false) Integer id) throws DataNotFound {
         return this.response(this.service.getById(id),200);
     }
 
@@ -45,7 +45,7 @@ public class CommonController<T,R extends JpaRepository<T,String>,S extends Comm
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id){
+    public ResponseEntity<?> delete(@PathVariable Integer id){
         this.service.delete(id);
         return this.statusCode(200);
     }

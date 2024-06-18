@@ -5,6 +5,6 @@ import sunsoft.mg.models.Currency;
 
 import java.util.List;
 
-public interface CurrencyRepo extends JpaRepository<Currency,String> {
+public interface CurrencyRepo extends JpaRepository<Currency,Integer> {
     List<Currency> findByCurrencyContainingOrSigleContaining(String currency,String sigle);
 }

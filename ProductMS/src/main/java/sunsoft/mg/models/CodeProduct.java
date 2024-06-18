@@ -8,27 +8,21 @@ import lombok.Setter;
 import sunsoft.mg.common.interfaces.HasId;
 
 import static sunsoft.mg.common.CommonService.generateUUID;
-
-@Entity
 @AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
-public class Currency implements HasId {//devise
+@Entity
+public class CodeProduct implements HasId {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
     @Column(updatable = false, nullable = false)
     public String uuid = generateUUID();
-    @Column(nullable = false, unique = true)
-    private String currency;
     @Column
-    private String sigle;
-    @Column
-    private Double percent = (double) 0;
-
+    String value;
     @Override
     public Integer getId() {
-        return id;
+        return 0;
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import sunsoft.mg.common.exception.DataNotSuitable;
 import sunsoft.mg.common.interfaces.HasId;
 
-public class CommonLiteController<T extends HasId,L,TR extends JpaRepository<T,String>,LR extends JpaRepository<L,String>,S extends CommonLiteService<T,L,TR,LR>> extends CommonController<T,TR,S> {
+public class CommonLiteController<T extends HasId,L,TR extends JpaRepository<T,Integer>,LR extends JpaRepository<L,Integer>,S extends CommonLiteService<T,L,TR,LR>> extends CommonController<T,TR,S> {
 
     public CommonLiteController(S service) {
         super(service);
