@@ -74,7 +74,20 @@ CREATE TABLE brand
 
 create table code_product
 (
+    id    serial primary key,
+    uuid  varchar(255) unique,
+    value varchar(32) not null
+);
+
+create table prix_product
+(
+    id          serial primary key,
+    type_client varchar(255)     not null,
+    pu_ttc      double precision not null
+);
+
+create table product
+(
     id   serial primary key,
     uuid varchar(255) unique,
-    value varchar(32) not null
 );
