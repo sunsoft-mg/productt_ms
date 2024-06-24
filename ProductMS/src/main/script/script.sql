@@ -86,8 +86,27 @@ create table prix_product
     pu_ttc      double precision not null
 );
 
-create table product
+CREATE TABLE product
 (
-    id   serial primary key,
-    uuid varchar(255) unique,
+    id serial primary key,
+    uuid  varchar(255) unique,
+    code VARCHAR(250) NOT NULL UNIQUE,
+    designation VARCHAR(250) NOT NULL UNIQUE,
+    category integer NOT NULL REFERENCES category(id),
+    subcategory integer REFERENCES subcategory(id),
+    place integer REFERENCES place(id),
+    default_provider varchar(255)     not null,
+    unit integer REFERENCES unit(id),
+    auto_update_prize BOOLEAN NOT NULL DEFAULT FALSE,
+    prize_system integer NOT NULL REFERENCES prize_system(id),
+    discount BOOLEAN NOT NULL DEFAULT FALSE,
+    tva integer NOT NULL REFERENCES tva(id),
+    charge NUMERIC(15,3) CHECK(charge > 0),
+    rebate NUMERIC(15,3) CHECK(rebate > 0),
+    brand integer REFERENCES brand(id),
+    margin NUMERIC(5,3) NOT NULL CHECK(margin >= 0 AND margin <= 100),
+    discount_percent NUMERIC(5,3) CHECK (discount_percent >= 0 AND discount_percent <= 100),
+    min_quantity_percent NUMERIC(5,4) CHECK (min_quantity_percent > 0),
+    min_quantity NUMERIC(15,3) DEFAULT NULL CHECK(min_quantity > 0),
+    max_quantity NUMERIC(15,3) DEFAULT NULL CHECK(max_quantity > 0)
 );
