@@ -59,12 +59,11 @@ CREATE TABLE subcategory
     uuid        varchar(255) unique,
     code        VARCHAR(20) NOT NULL UNIQUE,
     name        VARCHAR(50) NOT NULL UNIQUE,
-    category    int         NOT NULL REFERENCES category (id),
+    category    VARCHAR(250) NOT NULL,
     can_be_sold BOOLEAN     NOT NULL,
     see_in_sold BOOLEAN     NOT NULL,
     margin      NUMERIC(5, 3) CHECK (margin >= 0 AND margin <= 100)
 );
-
 CREATE TABLE brand
 (
     id   serial primary key,
@@ -90,23 +89,40 @@ CREATE TABLE product
 (
     id serial primary key,
     uuid  varchar(255) unique,
-    code VARCHAR(250) NOT NULL UNIQUE,
-    designation VARCHAR(250) NOT NULL UNIQUE,
-    category integer NOT NULL REFERENCES category(id),
-    subcategory integer REFERENCES subcategory(id),
-    place integer REFERENCES place(id),
-    default_provider varchar(255)     not null,
-    unit integer REFERENCES unit(id),
-    auto_update_prize BOOLEAN NOT NULL DEFAULT FALSE,
-    prize_system integer NOT NULL REFERENCES prize_system(id),
-    discount BOOLEAN NOT NULL DEFAULT FALSE,
-    tva integer NOT NULL REFERENCES tva(id),
-    charge NUMERIC(15,3) CHECK(charge > 0),
-    rebate NUMERIC(15,3) CHECK(rebate > 0),
-    brand integer REFERENCES brand(id),
-    margin NUMERIC(5,3) NOT NULL CHECK(margin >= 0 AND margin <= 100),
-    discount_percent NUMERIC(5,3) CHECK (discount_percent >= 0 AND discount_percent <= 100),
-    min_quantity_percent NUMERIC(5,4) CHECK (min_quantity_percent > 0),
+    subcategory VARCHAR(250) NOT NULL,
+    code VARCHAR(250) NOT NULL,
+    tva VARCHAR(250) NOT NULL,
+    place VARCHAR(250) NOT NULL,
+    designation VARCHAR(250) NOT NULL,
+    prize_system VARCHAR(250) NOT NULL,
+    tarif_auto boolean default false,
+    classement VARCHAR(250) NOT NULL,
+    default_provider varchar(255)     not null ,
+    unit VARCHAR(250) NOT NULL ,
+    brand VARCHAR(250) NOT NULL ,--marque
     min_quantity NUMERIC(15,3) DEFAULT NULL CHECK(min_quantity > 0),
-    max_quantity NUMERIC(15,3) DEFAULT NULL CHECK(max_quantity > 0)
+    max_quantity NUMERIC(15,3) DEFAULT NULL CHECK(max_quantity > 0),
+    sans_remise BOOLEAN NOT NULL DEFAULT FALSE,
+    qte_min_remise NUMERIC(15,3) CHECK(qte_min_remise > 0),
+    taux_remise NUMERIC(15,3) CHECK(taux_remise >= 0),--remise
+    taux_com NUMERIC(15,3) CHECK(taux_com >= 0),--remise
+    color VARCHAR(250) NOT NULL ,
+    poids NUMERIC(15,3) CHECK(poids > 0),
+    prix_achat_devise NUMERIC(15,3) DEFAULT NULL CHECK(prix_achat_devise > 0),
+    devise VARCHAR(250) NOT NULL,
+    isService BOOLEAN NOT NULL DEFAULT FALSE,
+    pu NUMERIC(5,3) CHECK (pu >= 0 AND pu <= 100),
+    en_sommeil BOOLEAN NOT NULL DEFAULT FALSE,
+    vendable BOOLEAN NOT NULL DEFAULT FALSE,
+    consultable_vente BOOLEAN NOT NULL DEFAULT FALSE,
+    scan_saisie BOOLEAN NOT NULL DEFAULT FALSE,
+    source integer,
+    charge_defaut NUMERIC(5,3) CHECK (charge_defaut >= 0 AND charge_defaut <= 100),
+    code_datapharme VARCHAR(250) NOT NULL,
+    codedcidet VARCHAR(250) NOT NULL,
+    deleted boolean default false
 );
+
+
+
+

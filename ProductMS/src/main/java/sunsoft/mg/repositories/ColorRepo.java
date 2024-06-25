@@ -6,5 +6,6 @@ import sunsoft.mg.models.Color;
 import java.util.List;
 
 public interface ColorRepo extends JpaRepository<Color,Integer> {
+    Color findTopByUuid(String uuid);
     List<Color> findByDescriptionContainingOrReferenceContaining(String description,String reference);
 }

@@ -3,6 +3,7 @@ package sunsoft.mg.services;
 
 import org.springframework.stereotype.Service;
 import sunsoft.mg.common.CommonService;
+import sunsoft.mg.models.Brand;
 import sunsoft.mg.models.Category;
 import sunsoft.mg.repositories.CategoryRepository;
 
@@ -19,5 +20,8 @@ public class CategoryService extends CommonService<Category, CategoryRepository>
     public List<Category> findByFilter(String filter) {
         return this.repository.findByNameContainingOrCodeContaining(filter,filter);
     }
-    
+    @Override
+    public Category findByCodeUUID(String uuid) {
+        return repository.findTopByUuid(uuid);
+    }
 }

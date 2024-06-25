@@ -61,4 +61,5 @@ public abstract class CommonService<T, R extends JpaRepository<T, Integer>> {
     public static String generateUUID() {
         return UUID.randomUUID().toString();
     }
+    public abstract T findByCodeUUID(String uuid);
 }

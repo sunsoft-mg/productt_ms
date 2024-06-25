@@ -2,6 +2,7 @@ package sunsoft.mg.services;
 
 import org.springframework.stereotype.Service;
 import sunsoft.mg.common.CommonService;
+import sunsoft.mg.models.Category;
 import sunsoft.mg.models.CodeProduct;
 import sunsoft.mg.repositories.CodeProductRepo;
 
@@ -16,5 +17,9 @@ public class CodeProductService extends CommonService<CodeProduct, CodeProductRe
     @Override
     public List<CodeProduct> findByFilter(String filter) {
         return repository.findByValueContaining(filter);
+    }
+    @Override
+    public CodeProduct findByCodeUUID(String uuid) {
+        return repository.findTopByUuid(uuid);
     }
 }

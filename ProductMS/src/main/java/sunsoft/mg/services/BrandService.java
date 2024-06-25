@@ -18,5 +18,10 @@ public class BrandService extends CommonService<Brand, BrandRepository> {
     public List<Brand> findByFilter(String filter) {
         return this.repository.findByNameContaining(filter);
     }
-    
+
+    @Override
+    public Brand findByCodeUUID(String uuid) {
+        return repository.findTopByUuid(uuid);
+    }
+
 }

@@ -12,7 +12,6 @@ import java.util.Optional;
 public abstract class CommonLiteService<T extends HasId,L,R extends JpaRepository<T,Integer>,LR extends JpaRepository<L,Integer>> extends CommonService<T,R> {
 
     protected final LR liteRepository;
-
     protected CommonLiteService(R repository,LR liteRepository) {
         super(repository);
         this.liteRepository = liteRepository;
@@ -47,4 +46,6 @@ public abstract class CommonLiteService<T extends HasId,L,R extends JpaRepositor
     }
 
     public abstract List<L> findByFilterLite(String filter);
+    public abstract T findByCodeUUID(String uuid);
+
 }

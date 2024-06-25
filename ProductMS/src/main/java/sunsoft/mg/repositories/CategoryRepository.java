@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
     List<Category> findByNameContainingOrCodeContaining(String name,String code);
+    Category findTopByUuid(String uuid);
 }

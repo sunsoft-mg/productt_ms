@@ -2,6 +2,7 @@ package sunsoft.mg.services;
 
 import org.springframework.stereotype.Service;
 import sunsoft.mg.common.CommonService;
+import sunsoft.mg.models.Color;
 import sunsoft.mg.models.PrixProduct;
 import sunsoft.mg.repositories.PrixProduitRepo;
 
@@ -16,5 +17,9 @@ public class PrixProductService extends CommonService<PrixProduct, PrixProduitRe
     @Override
     public List<PrixProduct> findByFilter(String filter) {
         return List.of();
+    }
+    @Override
+    public PrixProduct findByCodeUUID(String uuid) {
+        return null;
     }
 }

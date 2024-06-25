@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BrandRepository extends JpaRepository<Brand,Integer> {
     public List<Brand> findByNameContaining(String name);
+    Brand findTopByUuid(String uuid);
 }

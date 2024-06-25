@@ -2,6 +2,7 @@ package sunsoft.mg.services;
 
 import org.springframework.stereotype.Service;
 import sunsoft.mg.common.CommonService;
+import sunsoft.mg.models.CodeProduct;
 import sunsoft.mg.models.Color;
 import sunsoft.mg.repositories.ColorRepo;
 
@@ -16,5 +17,9 @@ public class ColorService extends CommonService<Color, ColorRepo> {
     @Override
     public List<Color> findByFilter(String filter) {
         return this.repository.findByDescriptionContainingOrReferenceContaining(filter,filter);
+    }
+    @Override
+    public Color findByCodeUUID(String uuid) {
+        return repository.findTopByUuid(uuid);
     }
 }

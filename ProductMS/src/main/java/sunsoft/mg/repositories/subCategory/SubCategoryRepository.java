@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import sunsoft.mg.models.subCategory.SubCategory;
 
 public interface SubCategoryRepository extends JpaRepository<SubCategory,Integer>{
-    
+    SubCategory findTopByUuid(String uuid);
 }

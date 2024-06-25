@@ -2,6 +2,7 @@ package sunsoft.mg.services;
 
 import org.springframework.stereotype.Service;
 import sunsoft.mg.common.CommonService;
+import sunsoft.mg.models.Color;
 import sunsoft.mg.models.Place;
 import sunsoft.mg.repositories.PlaceRepository;
 
@@ -17,6 +18,10 @@ public class PlaceService extends CommonService<Place, PlaceRepository> {
     @Override
     public List<Place> findByFilter(String filter) {
         return this.repository.findByCodeContainingOrNameContaining(filter,filter);
+    }
+    @Override
+    public Place findByCodeUUID(String uuid) {
+        return repository.findTopByUuid(uuid);
     }
     
 }
